@@ -1,0 +1,23 @@
+services:
+  cigniter-docker:
+    container_name: cigniter4-docker
+    build: .
+    volumes:
+      - ./cigniter-app:/var/www/html
+    ports:
+      - 8080:80
+  
+  mysql_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: flowers
+    ports:
+    - 3306:3306
+  
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 8081:80
+    environment:
+      - PMA_ARBITRARY=1
